@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.21
+    commands:
+      - echo "Entering terraform/test directory"
+      - cd terraform/test
+      - go mod tidy
+      - go mod download
+
+  build:
+    commands:
+      - echo "Running Terratest..."
+      - go test -v -timeout 30m ./...
